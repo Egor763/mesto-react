@@ -1,0 +1,124 @@
+.popup {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.popup_open {
+  transition: 0.3s;
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup__container {
+  width: 430px;
+  height: 330px;
+  background-color: #ffffff;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border-radius: 10px;
+}
+
+.popup__close-button {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: transparent;
+  background-image: url('../../images/close-icon.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  block-size: 32px 32px;
+  border: none;
+}
+
+.popup__close-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.popup__title {
+  width: 330px;
+  margin: 34px 0 54px;
+  line-height: 24px;
+  font-size: 24px;
+  font-weight: 900;
+  align-self: flex-start;
+  margin-left: 36px;
+}
+
+.popup__form {
+  width: 358px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form__field {
+  height: 44px;
+}
+
+.popup__input {
+  all: unset;
+  border: none;
+  width: 358px;
+  height: 27px;
+  line-height: 14px;
+  font-size: 14px;
+  font-weight: 400;
+  border-bottom: 1px solid #000000;
+}
+
+.popup__input-error {
+  line-height: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ff0000;
+  display: none;
+  margin-top: 5px;
+}
+
+.popup__span-error_active {
+  display: inline-block;
+}
+
+.popup__input-error_active {
+  border-bottom: 1px solid #ff0000;
+}
+
+.form__button {
+  width: 358px;
+  height: 50px;
+  margin-top: 18px;
+  line-height: 18px;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: #000000;
+  border: none;
+  color: white;
+}
+
+.form__button-inactive {
+  cursor: default;
+  background: transparent;
+  border: 1px solid #bebebe;
+  color: #bebebe;
+}
+
+.form__button-inactive:hover {
+  cursor: default;
+  opacity: 1;
+}
