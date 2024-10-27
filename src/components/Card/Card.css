@@ -1,0 +1,59 @@
+.Card {
+  width: 282px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card__image {
+  width: 282px;
+  height: 282px;
+}
+
+.card__basket {
+  width: 18px;
+  height: 19px;
+  position: absolute;
+  top: 20px;
+  right: 37px;
+  background: transparent;
+  border: none;
+}
+
+.card__basket-image {
+  width: 18px;
+  height: 19px;
+}
+
+.card__container {
+  width: 282px;
+  height: 79px;
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 10px 0 15px;
+}
+
+.card__title {
+  width: 224px;
+  line-height: 23px;
+  font-size: 24px;
+  font-weight: 900;
+  align-self: center;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
+}
+
+.card__like {
+  width: 22px;
+  height: 19px;
+  align-self: center;
+  background: transparent;
+  border: none;
+}
+
+.card__like-image {
+  width: 22px;
+  height: 19px;
+}
