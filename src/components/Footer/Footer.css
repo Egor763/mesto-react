@@ -1,0 +1,12 @@
+.Footer {
+  width: 318px;
+  align-self: flex-start;
+  margin-left: 200px;
+}
+
+.footer__copyright {
+  color: #545454;
+  line-height: 18px;
+  font-size: 18px;
+  font-weight: 400;
+}
