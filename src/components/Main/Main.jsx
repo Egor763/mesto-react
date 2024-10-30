@@ -12,7 +12,7 @@ export function Main() {
       .then((res) => res.json())
       .then((result) => {
         setCards(result);
-        console.log(result);
+        // console.log(result);
       });
   }, []);
 

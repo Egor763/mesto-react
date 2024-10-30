@@ -1,4 +1,4 @@
-.Profile {
+.profile {
   max-width: 880px;
   width: 100%;
   display: flex;
@@ -14,6 +14,8 @@
 
 .profile__image {
   width: 120px;
+  height: 120px;
+  border-radius: 50%;
 }
 
 .profile__info {

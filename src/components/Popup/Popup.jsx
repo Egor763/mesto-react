@@ -1,13 +1,11 @@
 import './Popup.css';
-import { FormProfile } from './FormProfile/FormProfile';
-// import { FormAddCard } from './FormAddCard/FormAddCard';
 
 import closeButton from '../../images/Close Icon.svg';
 
 export function Popup(props) {
   const { closePopup, title, children } = props;
   return (
-    <section className='Popup'>
+    <section className='popup'>
       <div className='overlay'></div>
       <div className='popup__container'>
         <button
@@ -20,7 +18,6 @@ export function Popup(props) {
         <h2 className='popup__title'>{title}</h2>
 
         {children}
-        {/* <FormAddCard /> */}
       </div>
     </section>
   );

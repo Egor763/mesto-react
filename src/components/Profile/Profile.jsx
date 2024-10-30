@@ -1,9 +1,7 @@
-import { useState } from 'react';
+import { memo, useState, useEffect, useContext } from 'react';
 
 import './Profile.css';
 import { Popup } from '../Popup/Popup';
-import { PopupAddCard } from '../PopupAddCard/PopupAddCard';
-import { PopupAvatar } from '../PopupAvatar/PopupAvatar';
 
 import { FormProfile } from '../Popup/FormProfile/FormProfile';
 import { FormAddCard } from '../PopupAddCard/FormAddCard/FormAddCard';
@@ -12,8 +10,11 @@ import { FormAvatar } from '../PopupAvatar/FormAvatar/FormAvatar';
 import avatar from '../../images/Avatar.png';
 import editButton from '../../images/Edit Button.svg';
 import addCardButton from '../../images/Add Button.png';
+import { UserContext } from '../../context/user-context';
 
-export function Profile() {
+export const Profile = memo(() => {
+  const { currentUser } = useContext(UserContext);
+
   const [openPopupProfile, setOpenPopupProfile] = useState(false);
   const [openPopupAddCard, setOpenPopupAddCard] = useState(false);
   const [openPopupChangeAvatar, setOpenPopupChangeAvatar] = useState(false);
@@ -43,17 +44,21 @@ export function Profile() {
   }
 
   return (
-    <section className='Profile'>
+    <section className='profile'>
       <div className='profile__container'>
         <img
           onClick={openPopupAvatar}
           className='profile__image hover__link'
-          src={avatar}
+          src={currentUser ? currentUser.avatar : avatar}
           alt='Аватар'
         />
         <div className='profile__info'>
-          <h1 className='profile__name'>Жак-Ив Кусто</h1>
-          <p className='profile__proffesion'>Исследователь океана</p>
+          <h1 className='profile__name'>
+            {currentUser ? currentUser.name : 'Жак-Ив-Кусто'}
+          </h1>
+          <p className='profile__proffesion'>
+            {currentUser ? currentUser.about : 'Исследователь океана'}
+          </p>
           <button
             onClick={openPopup}
             className='profile__edit-button hover__link'
@@ -67,6 +72,7 @@ export function Profile() {
           </button>
         </div>
       </div>
+
       <button
         onClick={openPopupCard}
         className='profile__add-card-button hover__link'
@@ -80,22 +86,19 @@ export function Profile() {
       </button>
       {openPopupProfile && (
         <Popup closePopup={closePopup} title='Редактировать профиль'>
-          <FormProfile />
+          <FormProfile closePopup={closePopup} />
         </Popup>
       )}
       {openPopupAddCard && (
-        <PopupAddCard closePopupCard={closePopupCard} title='Новое место'>
+        <Popup closePopup={closePopupCard} title='Новое место'>
           <FormAddCard />
-        </PopupAddCard>
+        </Popup>
       )}
       {openPopupChangeAvatar && (
-        <PopupAvatar
-          closePopupAvatar={closePopupAvatar}
-          title='Обновить аватар'
-        >
+        <Popup closePopup={closePopupAvatar} title='Обновить аватар'>
           <FormAvatar />
-        </PopupAvatar>
+        </Popup>
       )}
     </section>
   );
-}
+});
