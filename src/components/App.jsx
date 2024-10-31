@@ -1,6 +1,7 @@
-// import react from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { apiUser } from '../api/api-users';
+import { Register } from './Register/Register';
 import { Header } from './Header/Header';
 import { Main } from './Main/Main';
 import { Footer } from './Footer/Footer';
@@ -13,21 +14,24 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/users/me/${userId}`, {})
-      .then((res) => res.json())
-      .then((dataUser) => {
-        if (dataUser) {
-          setCurrentUser(dataUser);
-          localStorage.setItem('userId', dataUser.id);
-        }
-      });
+    apiUser.getUser(userId).then((dataUser) => {
+      if (dataUser) {
+        setCurrentUser(dataUser);
+        localStorage.setItem('userId', dataUser.id);
+      }
+    });
   }, []);
 
   return (
-    <div className='App'>
+    <div className='app'>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
         <Header />
-        <Main />
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/register' element={<Register />} />
+
+          {/* <Main /> */}
+        </Routes>
         <Footer />
       </UserContext.Provider>
     </div>

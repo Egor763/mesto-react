@@ -5,7 +5,7 @@ import like from '../../images/Group.svg';
 
 export function Card({ card }) {
   return (
-    <li className='Card'>
+    <li className='card'>
       <img className='card__image' src={card.link} alt={card.title} />
       <button className='card__basket hover__link' type='button'>
         <img className='card__basket-image' src={basket} alt='Корзина' />

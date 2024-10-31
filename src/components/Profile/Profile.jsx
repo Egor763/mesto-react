@@ -96,7 +96,7 @@ export const Profile = memo(() => {
       )}
       {openPopupChangeAvatar && (
         <Popup closePopup={closePopupAvatar} title='Обновить аватар'>
-          <FormAvatar />
+          <FormAvatar closePopup={closePopupAvatar} />
         </Popup>
       )}
     </section>

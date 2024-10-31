@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { UserContext } from '../../../context/user-context';
+import { apiUser } from '../../../api/api-users';
 import './FormProfile.css';
 
 export function FormProfile(props) {
@@ -28,19 +29,10 @@ export function FormProfile(props) {
     const userId = localStorage.getItem('userId');
 
     if (userId)
-      fetch(`http://127.0.0.1:8000/api/users/me/${userId}`, {
-        method: 'PATCH',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, about }),
-      })
-        .then((res) => res.json())
-        .then((newUser) => {
-          setCurrentUser(newUser);
-          closePopup();
-        });
+      apiUser.updateUser(userId, name, about).then((newUser) => {
+        setCurrentUser(newUser);
+        closePopup();
+      });
   }
 
   return (
