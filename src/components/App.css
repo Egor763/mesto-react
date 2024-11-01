@@ -24,6 +24,10 @@
   position: relative;
 }
 
+.app__register {
+  margin: 60px 0 40px;
+}
+
 .hover__link:hover {
   opacity: 0.8;
   cursor: pointer;

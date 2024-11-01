@@ -8,6 +8,7 @@ import { Footer } from './Footer/Footer';
 import { UserContext } from '../context/user-context';
 
 import './App.css';
+import { Login } from './Login/Login';
 
 function App() {
   const userId = '89021c8e-cbe2-4270-9aba-0631277d5564';
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
 
           {/* <Main /> */}
         </Routes>

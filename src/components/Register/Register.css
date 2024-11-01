@@ -1,5 +1,62 @@
 .register {
+  width: 358px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.register__title {
+  width: 358px;
   color: white;
-  font-size: 20px;
-  width: 180px;
+  line-height: 29px;
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 50px;
+}
+
+.register__form {
+  width: 358px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register__input {
+  all: unset;
+  border: none;
+  border-bottom: 2px solid white;
+  width: 358px;
+  height: 27px;
+  margin-bottom: 30px;
+  line-height: 14px;
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  padding-bottom: 13px;
+  text-align: start;
+}
+
+.register__button {
+  width: 358px;
+  height: 50px;
+  margin-top: 186px;
+  background: #fff;
+  border: none;
+  line-height: 22px;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.register__button-login {
+  width: 358px;
+  margin-top: 15px;
+  line-height: 17px;
+  font-size: 14px;
+  font-weight: 400;
+  background: transparent;
+  border: none;
+  color: white;
 }

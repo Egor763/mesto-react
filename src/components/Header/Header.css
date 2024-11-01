@@ -1,5 +1,7 @@
 .header {
   width: 100%;
+  display: flex;
+  gap: 685px;
 }
 
 .header__logo {
@@ -7,8 +9,18 @@
   height: 33px;
 }
 
+.header__login {
+  width: 53px;
+  line-height: 22px;
+  font-size: 18px;
+  font-weight: 400;
+  background: transparent;
+  border: none;
+  color: white;
+}
+
 @media screen and (max-width: 700px) {
-  .Header {
+  .header {
     width: 320px;
   }
 }
