@@ -60,3 +60,24 @@
   border: none;
   color: white;
 }
+
+.content {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup__icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 32px;
+}
+
+.popup__text {
+  width: 358px;
+  margin-bottom: 60px;
+  line-height: 24px;
+  font-size: 24px;
+  font-weight: 900;
+}
