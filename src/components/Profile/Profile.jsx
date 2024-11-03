@@ -49,15 +49,19 @@ export const Profile = memo(() => {
         <img
           onClick={openPopupAvatar}
           className='profile__image hover__link'
-          src={currentUser ? currentUser.avatar : avatar}
+          src={currentUser && currentUser.avatar ? currentUser.avatar : avatar}
           alt='Аватар'
         />
         <div className='profile__info'>
           <h1 className='profile__name'>
-            {currentUser ? currentUser.name : 'Жак-Ив-Кусто'}
+            {currentUser && currentUser.name
+              ? currentUser.name
+              : 'Жак-Ив-Кусто'}
           </h1>
           <p className='profile__proffesion'>
-            {currentUser ? currentUser.about : 'Исследователь океана'}
+            {currentUser && currentUser.about
+              ? currentUser.about
+              : 'Исследователь океана'}
           </p>
           <button
             onClick={openPopup}

@@ -20,6 +20,17 @@ class ApiAuth {
       body: JSON.stringify({ email, password }),
     }).then((res) => this._checkResponse(res));
   }
+
+  login(email, password) {
+    return fetch(`${this._baseUrl}/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: localStorage.getItem('access_token'),
+      },
+      body: JSON.stringify({ email, password }),
+    }).then((res) => this._checkResponse(res));
+  }
 }
 
 const baseUrl = 'http://127.0.0.1:8000/api';

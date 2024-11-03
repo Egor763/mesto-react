@@ -1,7 +1,6 @@
 .header {
   width: 100%;
   display: flex;
-  gap: 685px;
 }
 
 .header__logo {
@@ -17,6 +16,16 @@
   background: transparent;
   border: none;
   color: white;
+  margin-left: 517px;
+}
+
+.header__logout {
+  width: 56px;
+  color: #a9a9a9;
+  margin-left: 100px;
+  line-height: 22px;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 @media screen and (max-width: 700px) {

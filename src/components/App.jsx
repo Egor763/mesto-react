@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { apiUser } from '../api/api-users';
 import { Register } from './Register/Register';
@@ -11,16 +11,24 @@ import './App.css';
 import { Login } from './Login/Login';
 
 function App() {
-  const userId = '89021c8e-cbe2-4270-9aba-0631277d5564';
+  const userId = localStorage.getItem('userId');
   const [currentUser, setCurrentUser] = useState(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    apiUser.getUser(userId).then((dataUser) => {
-      if (dataUser) {
-        setCurrentUser(dataUser);
-        localStorage.setItem('userId', dataUser.id);
-      }
-    });
+    if (userId) {
+      console.log('i');
+      apiUser.getUser(userId).then((dataUser) => {
+        if (dataUser) {
+          console.log(dataUser);
+          setCurrentUser(dataUser);
+          localStorage.setItem('userId', dataUser.id);
+        }
+      });
+    } else {
+      navigate('/register');
+    }
   }, []);
 
   return (

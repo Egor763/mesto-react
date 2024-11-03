@@ -1,10 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import './Register.css';
 import { apiAuth } from '../../api/api-auth';
 import { Popup } from '../Popup/Popup';
 import ok from '../../images/ok.png';
 import errIcon from '../../images/err.png';
+import { UserContext } from '../../context/user-context';
 
 export function Register() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export function Register() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [popupContent, setPopupContent] = useState({});
+  const { setCurrentUser } = useContext(UserContext);
 
   function handleEmail(evt) {
     const { value } = evt.target;
@@ -32,12 +34,16 @@ export function Register() {
 
   function handleSubmitRegister(evt) {
     evt.preventDefault();
+
     apiAuth.register(email, password).then((res) => {
-      console.log(res);
       if (res) {
         setOpenPopup(true);
-        console.log('n');
         if (res.success) {
+          setCurrentUser(res.user);
+          localStorage.setItem('userId', res.user.id);
+          localStorage.setItem('access_token', res.access_token);
+          localStorage.setItem('refresh_token', res.refresh_token);
+
           setPopupContent({
             text: 'Вы успешно зарегистрировались!',
             icon: ok,
