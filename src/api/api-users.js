@@ -11,10 +11,12 @@ class ApiUser {
     }
   }
 
-  getUser(userId) {
-    return fetch(`${this._baseUrl}users/me/${userId}`, {}).then((res) =>
-      this._checkResponse(res)
-    );
+  getUser() {
+    return fetch(`${this._baseUrl}users/me`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      },
+    }).then((res) => this._checkResponse(res));
   }
 
   updateUser(userId, name, about) {

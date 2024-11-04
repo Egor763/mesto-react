@@ -22,23 +22,19 @@ export function Login() {
 
   function handleSubmitLogin(evt) {
     evt.preventDefault();
-    console.log('p');
 
     apiAuth.login(email, password).then((res) => {
       if (res) {
         if (res.success) {
           setCurrentUser(res.user);
-          localStorage.setItem('userId', res.user.id);
 
-          // setPopupContent({
-          //   text: 'Вы успешно зарегистрировались!',
-          //   icon: ok,
-          // });
+          localStorage.setItem('userId', res.user.id);
+          localStorage.setItem('refresh_token', res.refresh_token);
+          localStorage.setItem('access_token', res.access_token);
+
+          navigate('/');
         } else {
-          // setPopupContent({
-          //   text: 'Что-то пошло не так! Попробуйте ещё раз.',
-          //   icon: errIcon,
-          // });
+          // TODO обработка ошибки регистрации
         }
       }
     });

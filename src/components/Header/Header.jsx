@@ -9,12 +9,13 @@ export function Header() {
   const { currentUser } = useContext(UserContext);
   const { setCurrentUser } = useContext(UserContext);
   const { pathname } = useLocation();
-  console.log('pathname:', pathname);
 
   function logoutUser() {
     localStorage.removeItem('userId');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
     setCurrentUser(null);
-    navigate('/register');
+    navigate('/login');
   }
 
   return (

@@ -26,9 +26,17 @@ class ApiAuth {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        authorization: localStorage.getItem('access_token'),
       },
       body: JSON.stringify({ email, password }),
+    }).then((res) => this._checkResponse(res));
+  }
+
+  refreshToken() {
+    return fetch(`${this._baseUrl}/refresh`, {
+      method: 'GET',
+      headers: {
+        refresh: localStorage.getItem('refresh_token'),
+      },
     }).then((res) => this._checkResponse(res));
   }
 }
