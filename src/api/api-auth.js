@@ -33,10 +33,15 @@ class ApiAuth {
 
   refreshToken() {
     return fetch(`${this._baseUrl}/refresh`, {
-      method: 'GET',
+      // mode: 'no-cors',
+      method: 'POST',
       headers: {
-        refresh: localStorage.getItem('refresh_token'),
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        refresh: localStorage.getItem('refresh_token'),
+        userId: localStorage.getItem('userId'),
+      }),
     }).then((res) => this._checkResponse(res));
   }
 }

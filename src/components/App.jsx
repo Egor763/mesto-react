@@ -1,6 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useJwt } from 'react-jwt';
 
 import { apiUser } from '../api/api-users';
 import { Register } from './Register/Register';
@@ -16,30 +15,28 @@ import { checkToken } from '../utils/checkToken';
 function App() {
   const userId = localStorage.getItem('userId');
   const [currentUser, setCurrentUser] = useState(null);
-  const accessToken = localStorage.getItem('access_token');
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const checkAuth = async () => {
     if (userId) {
-      const isExpired = checkToken();
-      console.log('isExpired:', isExpired);
+      const status = await checkToken();
 
-      if (isExpired) {
-        apiUser.refreshToken().then((token) => {
-          console.log(token);
-        });
-      } else {
+      if (status) {
         apiUser.getUser().then((dataUser) => {
           if (dataUser) {
             console.log(dataUser);
             setCurrentUser(dataUser);
           }
         });
+      } else {
+        navigate('/login');
       }
-    } else {
-      navigate('/login');
     }
+  };
+
+  useEffect(() => {
+    checkAuth();
   }, []);
 
   return (
