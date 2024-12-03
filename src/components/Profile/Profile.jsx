@@ -12,7 +12,8 @@ import editButton from '../../images/Edit Button.svg';
 import addCardButton from '../../images/Add Button.png';
 import { UserContext } from '../../context/user-context';
 
-export const Profile = memo(() => {
+export const Profile = memo((props) => {
+  const { fetchAddCard } = props;
   const { currentUser } = useContext(UserContext);
 
   const [openPopupProfile, setOpenPopupProfile] = useState(false);
@@ -95,7 +96,10 @@ export const Profile = memo(() => {
       )}
       {openPopupAddCard && (
         <Popup closePopup={closePopupCard} title='Новое место'>
-          <FormAddCard />
+          <FormAddCard
+            closePopup={closePopupCard}
+            fetchAddCard={fetchAddCard}
+          />
         </Popup>
       )}
       {openPopupChangeAvatar && (

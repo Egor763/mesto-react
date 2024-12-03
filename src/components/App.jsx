@@ -25,7 +25,6 @@ function App() {
       if (status) {
         apiUser.getUser().then((dataUser) => {
           if (dataUser) {
-            console.log(dataUser);
             setCurrentUser(dataUser);
           }
         });
