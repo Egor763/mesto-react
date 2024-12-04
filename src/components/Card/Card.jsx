@@ -33,7 +33,7 @@ export function Card(props) {
       <div className='card__container'>
         <h2 className='card__title'>{card.title}</h2>
         <button
-          onClick={addLikes}
+          onClick={() => addLikes(card.id)}
           className='card__like hover__link'
           type='button'
         >

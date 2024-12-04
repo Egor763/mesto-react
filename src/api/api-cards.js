@@ -38,12 +38,13 @@ class ApiCards {
     }).then((res) => this._checkResponse(res));
   }
 
-  addLikes(cardId) {
+  addLikes(cardId, likes) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('access_token')}`,
       },
+      body: JSON.stringify(likes),
     }).then((res) => this._checkResponse(res));
   }
 }
