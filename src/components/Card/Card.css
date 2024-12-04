@@ -53,6 +53,11 @@
   border: none;
 }
 
+.card__like-active {
+  background: #000;
+  display: flex;
+}
+
 .card__like-image {
   width: 22px;
   height: 19px;

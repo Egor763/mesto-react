@@ -40,13 +40,27 @@ export function Main() {
       });
   }
 
+  function addLikes(cardId) {
+    return apiCards.addLikes(cardId).then((result) => {
+      if (result) {
+        const arr = cards.filter((card) => card.id !== cardId);
+        setCards(arr);
+      }
+    });
+  }
+
   return (
     <main className='main'>
       <Profile fetchAddCard={fetchAddCard} />
       <section className='cards'>
         <ul className='cards__container'>
           {cards.map((card) => (
-            <Card key={card.id} card={card} deleteCard={deleteCard} />
+            <Card
+              key={card.id}
+              card={card}
+              deleteCard={deleteCard}
+              addLikes={addLikes}
+            />
           ))}
         </ul>
       </section>

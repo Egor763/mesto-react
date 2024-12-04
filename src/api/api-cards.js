@@ -37,6 +37,15 @@ class ApiCards {
       },
     }).then((res) => this._checkResponse(res));
   }
+
+  addLikes(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => this._checkResponse(res));
+  }
 }
 
 const baseUrl = 'http://127.0.0.1:8000/api';
