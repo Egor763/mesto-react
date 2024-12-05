@@ -8,7 +8,6 @@ import { Card } from '../Card/Card';
 
 export function Main() {
   const [cards, setCards] = useState([]);
-  const [likeActive, setLikeActive] = useState(false);
 
   useEffect(() => {
     apiCards.getCards().then((result) => {
@@ -41,36 +40,13 @@ export function Main() {
       });
   }
 
-  async function addLikes(cardId) {
-    const access = await checkToken();
-
-    console.log('oi');
-
-    if (access) {
-      return apiCards.addLikes(cardId).then((res) => {
-        if (res) {
-          console.log('j');
-        }
-      });
-    }
-  }
-
-  function changeBackgroundLike() {
-    setLikeActive(true);
-  }
-
   return (
     <main className='main'>
       <Profile fetchAddCard={fetchAddCard} />
       <section className='cards'>
         <ul className='cards__container'>
           {cards.map((card) => (
-            <Card
-              key={card.id}
-              card={card}
-              deleteCard={deleteCard}
-              addLikes={addLikes}
-            />
+            <Card key={card.id} card={card} deleteCard={deleteCard} />
           ))}
         </ul>
       </section>

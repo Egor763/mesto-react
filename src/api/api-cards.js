@@ -38,13 +38,21 @@ class ApiCards {
     }).then((res) => this._checkResponse(res));
   }
 
-  addLikes(cardId, likes) {
+  addLikes(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${localStorage.getItem('access_token')}`,
       },
-      body: JSON.stringify(likes),
+    }).then((res) => this._checkResponse(res));
+  }
+
+  deleteLikes(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      },
     }).then((res) => this._checkResponse(res));
   }
 }

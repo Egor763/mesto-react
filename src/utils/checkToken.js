@@ -6,14 +6,14 @@ const accessToken = localStorage.getItem('access_token');
 
 export async function checkToken() {
   let payload = jwtDecode(accessToken);
-  let isExpired = false;
 
   const dateNow = Number(new Date().getTime().toString().slice(0, 10));
+  console.log('dateNow:', dateNow);
 
-  if (payload.exp < dateNow) isExpired = true;
+  console.log('payload.exp:', payload.exp);
 
   const check = () => {
-    if (isExpired) {
+    if (payload.exp < dateNow) {
       return apiAuth.refreshToken().then((res) => {
         if (res.success) {
           localStorage.setItem('access_token', res.access_token);
