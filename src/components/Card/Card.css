@@ -32,6 +32,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 10px 0 15px;
+  position: relative;
 }
 
 .card__title {
@@ -61,4 +62,25 @@
 .card__like-image {
   width: 22px;
   height: 19px;
+}
+
+.counter {
+  position: absolute;
+  right: 27px;
+  bottom: 8px;
+  font-size: 14px;
+}
+
+.btn__popup {
+  width: 358px;
+  height: 58px;
+  margin: 18px 0 37px;
+  line-height: 18px;
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #000000;
+  border: none;
+  color: white;
 }

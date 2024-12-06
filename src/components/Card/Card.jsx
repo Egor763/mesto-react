@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../context/user-context';
 import { checkToken } from '../../utils/checkToken';
 import { apiCards } from '../../api/api-cards';
+import { Popup } from '../Popup/Popup';
 
 import './Card.css';
 
@@ -14,6 +15,8 @@ export function Card(props) {
   const { currentUser } = useContext(UserContext);
 
   const [isLiked, setIsLiked] = useState(false);
+  const [popupConfirm, setPopupConfirm] = useState(false);
+  const [numLikes, setNumLikes] = useState(0);
 
   const iconLike = isLiked ? likeActive : like;
 
@@ -30,6 +33,10 @@ export function Card(props) {
     }
   }
 
+  function closePopup() {
+    setPopupConfirm(false);
+  }
+
   async function setLikes(cardId) {
     const access = await checkToken();
 
@@ -38,6 +45,7 @@ export function Card(props) {
         return apiCards.deleteLikes(cardId).then((res) => {
           if (res.success) {
             setIsLiked(false);
+            setNumLikes(res.data.likes.length);
           } else {
             setIsLiked(true);
           }
@@ -46,6 +54,7 @@ export function Card(props) {
         return apiCards.addLikes(cardId).then((res) => {
           if (res.success) {
             setIsLiked(true);
+            setNumLikes(res.data.likes.length);
           } else {
             setIsLiked(false);
           }
@@ -53,6 +62,8 @@ export function Card(props) {
       }
     }
   }
+
+  console.log(card.likes);
 
   return (
     <li className='card'>
@@ -75,7 +86,15 @@ export function Card(props) {
         >
           <img className='card__like-image' src={iconLike} alt='Лайк' />
         </button>
+        <span className='counter'>{numLikes}</span>
       </div>
+      {popupConfirm && (
+        <Popup closePopup={closePopup} title='Вы уверены?'>
+          <button className='btn__popup hover__link' type='button'>
+            Потвердить
+          </button>
+        </Popup>
+      )}
     </li>
   );
 }
