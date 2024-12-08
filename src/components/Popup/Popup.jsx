@@ -1,12 +1,25 @@
+import { useEffect } from 'react';
+
 import './Popup.css';
 
 import closeButton from '../../images/Close Icon.svg';
 
 export function Popup(props) {
   const { closePopup, title, children } = props;
+
+  useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27) {
+        closePopup();
+      }
+    };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, []);
+
   return (
     <section className='popup'>
-      <div className='overlay'></div>
+      <div onClick={closePopup} className='overlay'></div>
       <div className='popup__container'>
         <button
           onClick={closePopup}

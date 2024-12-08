@@ -3,7 +3,7 @@ import { UserContext } from '../../context/user-context';
 import { checkToken } from '../../utils/checkToken';
 import { apiCards } from '../../api/api-cards';
 import { Popup } from '../Popup/Popup';
-
+import { PopupWithImage } from '../PopupWithImage/PopupWithImage';
 import './Card.css';
 
 import basket from '../../images/basket.svg';
@@ -16,7 +16,8 @@ export function Card(props) {
 
   const [isLiked, setIsLiked] = useState(false);
   const [popupConfirm, setPopupConfirm] = useState(false);
-  const [numLikes, setNumLikes] = useState(0);
+  const [numLikes, setNumLikes] = useState(card.likes.length);
+  const [popupImage, setPopupImage] = useState(false);
 
   const iconLike = isLiked ? likeActive : like;
 
@@ -33,8 +34,20 @@ export function Card(props) {
     }
   }
 
+  function openPopup() {
+    setPopupConfirm(true);
+  }
+
+  function openPopupImage() {
+    setPopupImage(true);
+  }
+
   function closePopup() {
     setPopupConfirm(false);
+  }
+
+  function closePopupImage() {
+    setPopupImage(false);
   }
 
   async function setLikes(cardId) {
@@ -63,14 +76,22 @@ export function Card(props) {
     }
   }
 
-  console.log(card.likes);
+  function confirmDeleteCard() {
+    deleteCard(card.id);
+    closePopup();
+  }
 
   return (
     <li className='card'>
-      <img className='card__image' src={card.link} alt={card.title} />
+      <img
+        onClick={openPopupImage}
+        className='card__image'
+        src={card.link}
+        alt={card.title}
+      />
       {handleBasket() && (
         <button
-          onClick={() => deleteCard(card.id)}
+          onClick={openPopup}
           className='card__basket hover__link'
           type='button'
         >
@@ -90,10 +111,18 @@ export function Card(props) {
       </div>
       {popupConfirm && (
         <Popup closePopup={closePopup} title='Вы уверены?'>
-          <button className='btn__popup hover__link' type='button'>
+          <button
+            onClick={confirmDeleteCard}
+            className='btn__popup hover__link'
+            type='button'
+          >
             Потвердить
           </button>
         </Popup>
+      )}
+
+      {popupImage && (
+        <PopupWithImage card={card} closePopupImage={closePopupImage} />
       )}
     </li>
   );
